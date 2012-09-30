@@ -1,5 +1,6 @@
 var request = require('request'),
-    jsdom = require('jsdom');
+    jsdom = require('jsdom'),
+    url = require('url');
 
 function login(email, password, callback) {
   var j = request.jar(); // No shared/global cookies.
@@ -24,7 +25,8 @@ function login(email, password, callback) {
       var $ = window.jQuery;
 
       var link = $('body div.user_band a[href^="index.php?cont=profile"]').last();
-      var id = $(link).attr('href');
+      var href = $(link).attr('href');
+      var id = url.parse(href, true).query.id;
       var nick = $(link).text();
       callback(id, nick);
     });
