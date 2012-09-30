@@ -1,7 +1,7 @@
 var request = require('request'),
     jsdom = require('jsdom');
 
-function login(email, password) {
+function login(email, password, callback) {
   var j = request.jar(); // No shared/global cookies.
   var f = {
     cookie: 'true',
@@ -23,8 +23,10 @@ function login(email, password) {
     }, function (err, window) {
       var $ = window.jQuery;
 
-      console.log($('body div.user_band a[href^="index.php?cont=profile&id="]:not([class])').html());
-// TODO: something.
+      var link = $('body div.user_band a[href^="index.php?cont=profile"]').last();
+      var id = $(link).attr('href');
+      var nick = $(link).text();
+      callback(id, nick);
     });
   });
 }
