@@ -1,7 +1,7 @@
 {
   "name": "rm-login",
   "description": "login using readmore.de credentials",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "homepage": "https://github.com/hangy/rm-login-node",
   "repository": "https://github.com/hangy/rm-login-node.git",
   "author": "hangy <hangy@warsow.net> (http://hangy.de/)",

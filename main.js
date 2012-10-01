@@ -16,12 +16,22 @@ function login(email, password, callback) {
   var u = 'http://www.readmore.de/index.php?cont=login'  
   
   request.post(u, o, function (e, r, b) {
+    if (err || !b) {
+      callback(null, null);
+      return;
+    }
+
     jsdom.env({
       html: b,
       scripts: [
         'http://code.jquery.com/jquery.min.js'
       ]
     }, function (err, window) {
+      if (err) {
+        callback(null, null),
+        return;
+      }
+
       var $ = window.jQuery;
 
       var link = $('body div.user_band a[href^="index.php?cont=profile"]').last();
