@@ -21,7 +21,7 @@ function login(req, email, password, callback) {
   var u = 'http://www.readmore.de/index.php?cont=login'  
   
   request.post(u, o, function (e, r, b) {
-    if (err || !b) {
+    if (e || !b) {
       callback(null, null);
       return;
     }
