@@ -28,7 +28,7 @@ function login(email, password, callback) {
       ]
     }, function (err, window) {
       if (err) {
-        callback(null, null),
+        callback(null, null);
         return;
       }
 
