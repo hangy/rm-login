@@ -2,7 +2,7 @@ var request = require('request'),
     jsdom = require('jsdom'),
     url = require('url');
 
-function login(email, password, callback) {
+function login(req, email, password, callback) {
   var j = request.jar(); // No shared/global cookies.
   var f = {
     cookie: 'true',
@@ -10,8 +10,13 @@ function login(email, password, callback) {
     email: email,
     password: password
   };
+  var h = {
+    "X-Forwarded-For": req.ip
+  };
   var o = {
-    form: f
+    headers: h,
+    form: f,
+    jar: j
   };
   var u = 'http://www.readmore.de/index.php?cont=login'  
   
